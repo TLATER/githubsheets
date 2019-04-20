@@ -1,0 +1,58 @@
+<div class="container">
+  <div id="character">
+    <table class="table table-bordered">
+      <tbody>
+        {{#character.misc}}
+          <tr class="stats">
+            <th class="rotated-header" rowspan="2">Miscellaneous</th>
+            <td>{{player}}</td>
+            <td>{{name}}</td>
+            <td>{{inspiration}}</td>
+            <td>{{proficiency}}</td>
+          </tr>
+          <tr class="descriptions">
+            <th>Player name</td>
+            <th>Character name</td>
+            <th>Inspiration</td>
+            <th>Proficiency</td>
+          </tr>
+        {{/character.misc}}
+        {{#character.overview}}
+          <tr class="stats">
+            <th class="rotated-header" rowspan="2">Overview</th>
+            <td>{{race}}</td>
+            <td>{{background}}</td>
+            <td>{{alignment}}</td>
+            <td>{{classes}}</td>
+          </tr>
+          <tr class="descriptions">
+            <th>Race</th>
+            <th>Background</th>
+            <th>Alignment</th>
+            <th>Class(es)</th>
+            <th colspan="2">Portrait</th>
+          </tr>
+        {{/character.overview}}
+        {{#character.ability_scores}}
+          <tr class="stats">
+            <th class="rotated-header" rowspan="2">Ability Scores</th>
+            <td>{{strength}} ({{strength_modifier}})</td>
+            <td>{{dexterity}} ({{dexterity_modifier}})</td>
+            <td>{{constitution}} ({{constitution_modifier}})</td>
+            <td>{{intelligence}} ({{intelligence_modifier}})</td>
+            <td>{{wisdom}} ({{wisdom_modifier}})</td>
+            <td>{{charisma}} ({{charisma_modifier}})</td>
+          </tr>
+          <tr class="descriptions">
+            <th>Strength</th>
+            <th>Dexterity</th>
+            <th>Constitution</th>
+            <th>Intelligence</th>
+            <th>Wisdom</th>
+            <th>Charisma</th>
+          </tr>
+        {{/character.ability_scores}}
+      </tbody>
+    </table>
+  </div>
+</div>

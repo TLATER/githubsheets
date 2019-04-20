@@ -1,0 +1,13 @@
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+
+th {
+    &.rotated-header {
+        writing-mode: tb;
+    }
+}
+
+tr {
+    &.descriptions {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+}

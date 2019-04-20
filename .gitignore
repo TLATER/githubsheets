@@ -1,0 +1,4 @@
+node_modules
+dist
+/.dir-locals.el
+/yarn-error.log

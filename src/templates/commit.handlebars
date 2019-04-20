@@ -1,0 +1,11 @@
+<div id="commit" class="container">
+  <p>{{object.oid}}</p>
+  <p>{{object.author.name}}</p>
+  <p>{{object.message}}</p>
+  <p>{{object.messageBody}}</p>
+  <ul>
+  {{#object.tree.entries}}
+    <li data-oid="{{oid}}">{{name}}</li>
+  {{/object.tree.entries}}
+  </ul>
+</div>
