@@ -1,0 +1,63 @@
+[misc]
+player = "Tristan"
+name = "Era"
+inspiration = false
+proficiency = 2
+
+[overview]
+race = "Human"
+background = "Folk Hero"
+alignment = "Chaotic Neutral"
+classes = "Sorcerer (3)"
+
+[ability_scores]
+strength = 8
+dexterity = 14
+constitution = 14
+intelligence = 12
+wisdom = 10
+charisma = 16
+
+# saving throws = [
+#     "Constitution",
+#     "Charisma"
+# ]
+
+# [Person]
+# race = "Human"
+# background = "Folk Hero"
+# feats = [
+#     "Lucky"
+# ]
+# skill_proficiencies = [
+#     "Animal Handling",
+#     "Arcana",
+#     "Performance",
+#     "Persuasion",
+#     "Insight"
+# ]
+
+# [Equipment]
+# currency = 10
+# weapons = [
+#     "Dagger"
+# ]
+# misc = [
+#     "Explorer's Pack",
+#     "Arcane focus (Wand!)",
+#     "Twin Rocketo cart",
+#     "Shovel",
+#     "Iron Pot",
+#     "Common Clothes"
+# ]
+
+# [History]
+# background = """
+# """
+
+# [Sorcerer]
+# hit_rolls = [6, 4, 4]
+# metamagic = [
+#     "Empowered spell",
+#     "Twinned spell"
+# ]
