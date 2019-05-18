@@ -16,34 +16,24 @@
  * You should have received a copy of the GNU General Public License
  * along with gitsheets.  If not, see <https://www.gnu.org/licenses/>.
  *
- * @file Main entry point
+ * @file Selectors
  * @author Tristan Daniël Maat <tm@tlater.net>
  * @license GPL-3.0-or-later
  * @copyright Tristan Daniël Maat 2019
  */
 
-// Load React
-import React from "react";
-import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-
-import { fromJS } from "immutable";
-
-// Load page CSS
-import bootstrap_ from "bootstrap";
-import styles_ from "./styles/main.scss";
-
-// Load components
-import RepositoryList from "./components/repository_list.jsx";
-import { store, addRepository } from "./redux";
-
-function main() {
-    ReactDOM.render(
-        <Provider store={store}>
-            <RepositoryList />
-        </Provider>,
-        document.getElementById("repository-list-container")
-    );
+export function getRepositories(store) {
+    return store.repositories;
 }
 
-window.onload = main;
+export function getRepository(store, repositoryID) {
+    return store.repositories.getIn([repositoryID]);
+}
+
+export function getCommit(store, commitID) {
+    return store.commits.get(commitID);
+}
+
+export function getFile(store, fileID) {
+    return store.files.get(fileID);
+}

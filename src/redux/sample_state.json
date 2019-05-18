@@ -1,0 +1,27 @@
+{
+    "repositories": {
+        "some_id": {
+            "forge": "github",
+            "forge_key": "some_id",
+            "user": "tlater",
+            "name": "githubsheets",
+            "files": ["some_id1", "some_id2"]
+        }
+    },
+    "files": {
+        "some_id1": {
+            "repository": "some_id",
+            "name": "tiefa.toml",
+            "type": "file"
+        },
+        "some_id2": {
+            "repository": "some_id",
+            "name": "characters",
+            "type": "directory",
+            "files": ["some_id1"]
+        }
+    },
+    "characters": {
+        "file": "some_id1"
+    }
+}

@@ -1,0 +1,51 @@
+<!-- Copyright (C) 2019 Tristan Daniël Maat
+
+     This file is part of gitsheets.
+
+     gitsheets is free software: you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation, either version 3 of the License, or
+     (at your option) any later version.
+
+     gitsheets is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     GNU General Public License for more details.
+
+     You should have received a copy of the GNU General Public License
+     along with gitsheets.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Githubsheets</title>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row" id="page">
+                <div class="col-12 col-md-3 sidebar">
+                    <button class="btn btn-link d-md-none" type="button"
+                            data-toggle="collapse" data-target="#sidebar-nav"
+                            aria-expanded="false" aria-controls="sidebar">
+                        Test close button
+                    </button>
+                    <nav id="sidebar-nav">
+                        <div id="repository-list" class="sidebar-item">
+                            <a data-toggle="collapse" data-target="#repository-list-container"
+                               aria-expanded="true" aria-controls="repositories"
+                               class="sidebar-link" title="Show repositories">
+                                Repositories
+                            </a>
+                            <div id="repository-list-container" class="collapse show">
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <main id="content" class="col-12 col-md-9 py-md-3" role="main">
+                </main>
+            </div>
+        </div>
+    </body>
+</html>

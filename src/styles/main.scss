@@ -15,17 +15,13 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with gitsheets.  If not, see <https://www.gnu.org/licenses/>.
- *
- * @file Dev-only webpack configuration
- * @author Tristan Daniël Maat <tm@tlater.net>
- * @license GPL-3.0-or-later
- * @copyright Tristan Daniël Maat 2019
  */
 
-const merge = require("webpack-merge");
-const common = require("./webpack.common.js");
+// TODO: Import only what we need
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+@import "./sidebar.scss";
 
-module.exports = merge(common, {
-    mode: "development",
-    devtool: "cheap-eval-source-map"
-});
+html, body {
+    height: 100%;
+}
+
