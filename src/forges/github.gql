@@ -43,6 +43,27 @@ fragment Files on Tree {
   }
 }
 
+fragment File on GitObject {
+  ... on Blob {
+    text
+  }
+
+  ... on Tree {
+    entries {
+      name
+      oid
+    }
+  }
+
+  ... on Tag {
+    name
+  }
+
+  ... on Commit {
+    message
+  }
+}
+
 query getCommit($user: String!, $repository: String!, $sha: String!) {
   repository(owner: $user, name: $repository) {
     object(expression: $sha) {
@@ -65,12 +86,10 @@ query getCommitFiles($user: String!, $repository: String!, $oid: GitObjectID) {
   }
 }
 
-query getFileText($user: String!, $repository: String!, $oid: GitObjectID) {
+query getRepositoryFile($user: String!, $repository: String!, $oid: GitObjectID) {
   repository(owner: $user, name: $repository) {
     object(oid: $oid) {
-      ... on Blob {
-        text
-      }
+      ...File
     }
   }
 }

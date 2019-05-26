@@ -42,24 +42,21 @@ export function fetchRepository(forge, user, name) {
     };
 }
 
-/*
- * export function fetchRepositoryFiles(user, name, commit) {
- *     return function(_dispatch, getState) {
- *         const forge = "github";
- *
- *         actions.fetchFiles();
- *
- *         const token = getState().forges.get(forge).get("token");
- *
- *         return GitHub.getTree(token, user, name, commit)
- *             .then(result => {
- *                 const files = result.data.repository.object.tree.entries;
- *                 for (const file of files) {
- *                     actions.addFile(Map({
- *                         oid: file.oid,
- *                         name: file.name
- *                     }));
- *                 }
- *             });
- *     };
- * } */
+export function fetchFile(id) {
+    return function(dispatch, getState) {
+        const file = getState().files.get(id);
+        const repository = getState().repositories.get(file.get("repository"));
+        const token = getState().forges.get(repository.get("forge")).get("token");
+
+        dispatch(actions.startFetchingFile(id));
+
+        return GitHub.getFile(token, repository.get("user"),
+                              repository.get("name"), file.get("oid"))
+            .then(result => {
+                let file = result.data.repository.object;
+                if (file === null) // File is a submodule (grr... stupid API)
+                    file = {};
+                dispatch(actions.completeFetchingFile(id, file));
+            });
+    };
+}

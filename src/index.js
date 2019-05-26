@@ -27,15 +27,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 
-import { fromJS } from "immutable";
-
 // Load page CSS
 import bootstrap_ from "bootstrap";
 import styles_ from "./styles/main.scss";
 
 // Load components
 import RepositoryList from "./components/repository_list.jsx";
-import { store, addRepository } from "./redux";
+import Display from "./components/display.jsx";
+import { store } from "./redux";
 
 function main() {
     ReactDOM.render(
@@ -43,6 +42,13 @@ function main() {
             <RepositoryList />
         </Provider>,
         document.getElementById("repository-list-container")
+    );
+
+    ReactDOM.render(
+        <Provider store={store}>
+            <Display />
+        </Provider>,
+        document.getElementById("content")
     );
 }
 

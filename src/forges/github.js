@@ -74,5 +74,14 @@ export default {
         };
 
         return request(token, githubQueries.getCommitFiles, variables);
+    },
+    getFile: function getFile(token, user, repository, oid) {
+        const variables = {
+            user: user,
+            repository: repository,
+            oid: oid
+        };
+
+        return request(token, githubQueries.getRepositoryFile, variables);
     }
 };

@@ -16,46 +16,34 @@
  * You should have received a copy of the GNU General Public License
  * along with gitsheets.  If not, see <https://www.gnu.org/licenses/>.
  *
- * @file The File component
+ * @file Redux display reducer
  * @author Tristan Daniël Maat <tm@tlater.net>
  * @license GPL-3.0-or-later
  * @copyright Tristan Daniël Maat 2019
  */
 
-import React from "react";
-import PropTypes from "prop-types";
+import { createReducer } from "redux-act";
 import { Map } from "immutable";
-import { connect } from "react-redux";
 
-import { getFile, showFile } from "../redux";
+import * as actions from "../actions";
 
-class File extends React.Component {
-    constructor(props) {
-        super(props);
+/**
+ * This module defines the reducers for the display namespace.
+ *
+ * The display namespace describes the current display element, and
+ * looks as follows::
+ *
+ * ```json
+ * {
+ *     file: "<id>"
+ * }
+ * ````
+ *
+ * @module redux/reducers/display
+ */
 
-        this.handleFileOpen = this.handleFileOpen.bind(this);
-    }
-
-    handleFileOpen(event) {
-        this.props.showFile(this.props.id);
-
-        event.stopPropagation();
-        event.preventDefault();
-    }
-
-    render() {
-        return (
-            <li onClick={this.handleFileOpen}>{this.props.file.get("name")}</li>
-        );
-    }
-}
-
-File.propTypes = {
-    file: PropTypes.instanceOf(Map).isRequired,
-    id: PropTypes.string.isRequired,
-    showFile: PropTypes.func.isRequired
-};
-
-export default connect((state, ownProps) => ({
-    file: getFile(state, ownProps.id)
-}), { showFile })(File);
+export default createReducer({
+    [actions.showFile]: (display, id) => display.set("file", id)
+}, Map({
+    file: null
+}));

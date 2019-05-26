@@ -26,3 +26,4 @@ export { default as repositories } from "./repositories";
 export { default as forges } from "./forges";
 export { default as commits } from "./commits";
 export { default as files } from "./files";
+export { default as display } from "./display";

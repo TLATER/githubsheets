@@ -81,5 +81,19 @@ export const completeFetchingRepository =
 export const toggleExpandRepository =
     createAction("TOGGLE_EXPAND_REPOSITORY", id => id);
 
-export const fetchFiles = createAction("FETCH_FILES");
-export const addFile = createAction("ADD_FILE", file => file);
+/**
+ * Display the given file.
+ *
+ * @arg id - The id of the file to display.
+ */
+export const showFile = createAction("SHOW_FILE", id => id);
+
+export const startFetchingFile = createAction("START_FETCHING_FILE", id => id);
+
+export const completeFetchingFile =
+    createAction("COMPLETE_FETCHING_FILE", (id, file) => {
+        return Map({
+            id: id,
+            text: file.text
+        });
+    });

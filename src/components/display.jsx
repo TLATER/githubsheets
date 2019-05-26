@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with gitsheets.  If not, see <https://www.gnu.org/licenses/>.
  *
- * @file The File component
+ * @file The character Display component
  * @author Tristan Daniël Maat <tm@tlater.net>
  * @license GPL-3.0-or-later
  * @copyright Tristan Daniël Maat 2019
@@ -27,35 +27,29 @@ import PropTypes from "prop-types";
 import { Map } from "immutable";
 import { connect } from "react-redux";
 
-import { getFile, showFile } from "../redux";
+import { fetchFile, getDisplay, getFile } from "../redux";
 
-class File extends React.Component {
-    constructor(props) {
-        super(props);
+function Display(props) {
+    let text = null;
 
-        this.handleFileOpen = this.handleFileOpen.bind(this);
-    }
+    if (!props.file)
+        text = "Select a file from the menu on the left";
+    else
+        text = props.file.get("text");
 
-    handleFileOpen(event) {
-        this.props.showFile(this.props.id);
+    if (!text)
+        props.fetchFile(props.display.get("file"));
 
-        event.stopPropagation();
-        event.preventDefault();
-    }
-
-    render() {
-        return (
-            <li onClick={this.handleFileOpen}>{this.props.file.get("name")}</li>
-        );
-    }
+    return (<pre>{text}</pre>);
 }
 
-File.propTypes = {
-    file: PropTypes.instanceOf(Map).isRequired,
-    id: PropTypes.string.isRequired,
-    showFile: PropTypes.func.isRequired
+Display.propTypes = {
+    display: PropTypes.instanceOf(Map).isRequired,
+    file: PropTypes.instanceOf(Map),
+    fetchFile: PropTypes.func.isRequired
 };
 
-export default connect((state, ownProps) => ({
-    file: getFile(state, ownProps.id)
-}), { showFile })(File);
+export default connect(state =>({
+    display: getDisplay(state),
+    file: getFile(state, getDisplay(state).get("file"))
+}), { fetchFile })(Display);

@@ -36,6 +36,8 @@ import * as actions from "../actions";
  * ```json
  * {
  *     "github/tim/elvenkings/<sha>/<oid>": {
+ *         repository: <id>,
+ *         commit: <id>,
  *         name: "kent.toml",
  *         oid: "<oid>",
  *         files: [],
@@ -53,11 +55,18 @@ export default createReducer({
 
         return commit.get("files").reduce((files, file) => {
             return files.set(preID + file.oid, Map({
+                repository: commit.get("repoID"),
+                commit: commit.get("commitOID"),
                 name: file.name,
                 oid: file.oid,
                 files: Set(),
                 text: null
             }));
         }, files);
+    },
+    [actions.completeFetchingFile]: (files, file) => {
+        const current = files.get(file.get("id"));
+        return files.set(file.get("id"),
+            current.set("text", file.get("text")));
     }
 }, Map());

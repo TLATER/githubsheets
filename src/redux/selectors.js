@@ -37,3 +37,7 @@ export function getCommit(store, commitID) {
 export function getFile(store, fileID) {
     return store.files.get(fileID);
 }
+
+export function getDisplay(store) {
+    return store.display;
+}
