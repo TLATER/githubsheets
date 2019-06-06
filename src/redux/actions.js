@@ -73,6 +73,15 @@ export const completeFetchingRepository =
         });
     });
 
+export const failFetchingRepository =
+    createAction("FAIL_FETCHING_REPOSITORY", (id, error) => {
+        return Map({
+            repoID: id,
+            time: Date.now(),
+            error: error
+        });
+    });
+
 /**
  * Expand/retract the given repository.
  *

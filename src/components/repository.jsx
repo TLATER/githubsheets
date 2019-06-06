@@ -45,15 +45,17 @@ class Repository extends React.Component {
     handleExpandRepository() {
         const repo = this.props.repository;
 
-        if (!repo.getIn(["ui", "expanded"]) &&
-            Date.now() - repo.getIn(["meta", "lastUpdate"]) > REPO_REFRESH_TIME)
+        if ((!repo.getIn(["ui", "expanded"]) &&
+             Date.now() - repo.getIn(["meta", "lastUpdate"]) > REPO_REFRESH_TIME)
+            || repo.getIn(["meta", "error"]) !== null)
             this.props.fetchRepository(
                 repo.get("forge"),
                 repo.get("user"),
                 repo.get("name")
             );
 
-        this.props.toggleExpandRepository(this._id);
+        if (!repo.getIn(["meta", "error"]))
+            this.props.toggleExpandRepository(this._id);
     }
 
     render() {

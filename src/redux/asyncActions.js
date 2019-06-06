@@ -38,6 +38,9 @@ export function fetchRepository(forge, user, name) {
             .then(result => {
                 const commit = result.data.repository.object;
                 dispatch(actions.completeFetchingRepository(id, commit));
+            })
+            .catch(error => {
+                dispatch(actions.failFetchingRepository(id, error));
             });
     };
 }

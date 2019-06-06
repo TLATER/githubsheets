@@ -41,7 +41,8 @@ import * as actions from "../actions";
  *         name: "elvenkings",      // The name of the repository
  *         currentCommit: "<sha>",  // The current master commit sha
  *         meta: {
- *             lastUpdate: 0        // When we last successfully fetched a sha
+ *             lastUpdate: 0,       // When we last successfully fetched a sha
+ *             error: null          // An error message for the last fetch
  *         },
  *         ui: {
  *             fetching: false,     // Whether we are fetching a new sha
@@ -73,7 +74,8 @@ export default createReducer({
             name: repository.get("name"),
             currentCommit: null,
             meta: Map({
-                lastUpdate: null
+                lastUpdate: null,
+                error: null
             }),
             ui: Map({
                 fetching: false,
@@ -109,6 +111,32 @@ export default createReducer({
         repos = repos.setIn(
             [repository, "ui", "exists"],
             true
+        );
+        repos = repos.setIn(
+            [repository, "meta", "error"],
+            null
+        );
+
+        return repos;
+    },
+    [actions.failFetchingRepository]: (repositories, error) => {
+        const repository = error.get("repoID");
+
+        let repos = repositories.setIn(
+            [repository, "meta", "error"],
+            error.get("error").message
+        );
+        repos = repos.setIn(
+            [repository, "meta", "lastUpdate"],
+            error.get("time")
+        );
+        repos = repos.setIn(
+            [repository, "ui", "fetching"],
+            false
+        );
+        repos = repos.setIn(
+            [repository, "ui", "exists"],
+            false
         );
 
         return repos;
