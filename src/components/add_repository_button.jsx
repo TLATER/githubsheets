@@ -35,7 +35,7 @@ class AddRepositoryButton extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleAddRepository}>
+            <form className="mt-auto" onSubmit={this.handleAddRepository}>
                 <div className="input-group">
                     <input type="text"
                         className="form-control"

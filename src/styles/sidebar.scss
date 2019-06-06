@@ -33,6 +33,10 @@
     }
 }
 
+#sidebar-nav, #repository-list, #repository-list-container {
+    height: 100%;
+}
+
 #repository-list a, #repository-list li {
     display: block;
     width: 100%;

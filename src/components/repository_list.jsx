@@ -33,14 +33,23 @@ import { getRepositories } from "../redux";
 
 function RepositoryList(props) {
     return (
-        <ul className="nav">
-            {
-                props.repositories.map((repo, key) => (
-                    <Repository repository={repo} key={key} />
-                )).valueSeq().toArray()
-            }
+        <div id="repository-list-container"
+            className="collapse show d-flex flex-column py-3">
+            <a data-toggle="collapse" data-target="#repository-list-container"
+                aria-expanded="true" aria-controls="repositories"
+                className="sidebar-link" title="Show repositories">
+                Repositories
+            </a>
+
+            <ul className="nav mb-auto overflow-auto py-3">
+                {
+                    props.repositories.map((repo, key) => (
+                        <Repository repository={repo} key={key} />
+                    )).valueSeq().toArray()
+                }
+            </ul>
             <AddRepositoryButton />
-        </ul>
+        </div>
     );
 }
 

@@ -41,7 +41,7 @@ function main() {
         <Provider store={store}>
             <RepositoryList />
         </Provider>,
-        document.getElementById("repository-list-container")
+        document.getElementById("repository-list")
     );
 
     ReactDOM.render(

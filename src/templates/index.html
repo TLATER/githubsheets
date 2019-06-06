@@ -31,16 +31,14 @@
                             aria-expanded="false" aria-controls="sidebar">
                         Test close button
                     </button>
-                    <nav id="sidebar-nav">
-                        <div id="repository-list" class="sidebar-item">
-                            <a data-toggle="collapse" data-target="#repository-list-container"
-                               aria-expanded="true" aria-controls="repositories"
-                               class="sidebar-link" title="Show repositories">
-                                Repositories
-                            </a>
-                            <div id="repository-list-container" class="collapse show">
-                            </div>
-                        </div>
+                    <nav id="sidebar-nav" class="d-flex flex-column">
+                      <div id="repository-list" class="sidebar-item">
+                        <a data-toggle="collapse" data-target="#repository-list-container"
+                           aria-expanded="true" aria-controls="repositories"
+                           class="sidebar-link" title="Show repositories">
+                          Repositories
+                        </a>
+                      </div>
                     </nav>
                 </div>
                 <main id="content" class="col-12 col-md-9 py-md-3" role="main">
