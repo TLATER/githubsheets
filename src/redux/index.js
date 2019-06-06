@@ -22,23 +22,39 @@
  * @copyright Tristan Daniël Maat 2019
  */
 
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
-import { assignAll } from "redux-act";
-import * as reducers from "./reducers";
-import * as actions from "./actions";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import immutable from "redux-persist-transform-immutable";
 
-const store = applyMiddleware(thunk)(createStore)(
-    combineReducers(reducers),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+import * as reducers from "./reducers";
+
+const enhancers = [];
+const middleware = [thunk];
+
+if (typeof window.__REDUX_DEVTOOLS_EXTENSION__ === "function")
+    enhancers.push(window.__REDUX_DEVTOOLS_EXTENSION__());
+
+const reducer = persistReducer({
+    transforms: [immutable()],
+    key: "root",
+    storage
+}, combineReducers(reducers));
+
+const store = createStore(
+    reducer,
+    {},
+    compose(
+        applyMiddleware(...middleware),
+        ...enhancers
+    )
 );
 
+const persistor = persistStore(store);
+
 export { store };
+export { persistor };
 export * from "./actions";
 export * from "./asyncActions";
 export * from "./selectors";
-
-window.actions = actions;
-import * as asyncActions from "./asyncActions";
-window.asyncActions = asyncActions;
-window.store = store;

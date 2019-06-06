@@ -26,6 +26,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
 // Load page CSS
 import bootstrap_ from "bootstrap";
@@ -34,12 +35,14 @@ import styles_ from "./styles/main.scss";
 // Load components
 import RepositoryList from "./components/repository_list.jsx";
 import Display from "./components/display.jsx";
-import { store } from "./redux";
+import { store, persistor } from "./redux";
 
 function main() {
     ReactDOM.render(
         <Provider store={store}>
-            <RepositoryList />
+            <PersistGate loading={null} persistor={persistor}>
+                <RepositoryList />
+            </PersistGate>
         </Provider>,
         document.getElementById("repository-list")
     );
